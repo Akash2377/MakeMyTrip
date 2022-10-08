@@ -35,6 +35,11 @@ const FlightHome = () => {
   };
   const handleSubmit = () => {
     navigate("/flights");
+    let obj = {
+    departure : from,
+    arrival : to
+    }
+    localStorage.setItem('fromto',JSON.stringify(obj));
   };
   return (
     <div className={styles.flight_wrapper}>

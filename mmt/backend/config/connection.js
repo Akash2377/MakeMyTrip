@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const connection = async() =>{
 
    return new Promise((resolve,reject)=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/blog-app').then(()=>{
+    mongoose.connect('mongodb://127.0.0.1:27017/makemytrip').then(()=>{
         console.log('connected')
         resolve()
     }).catch((err)=>{

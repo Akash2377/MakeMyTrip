@@ -24,11 +24,20 @@ export const Flight = () => {
     console.log(stopCheck, check);
     console.log("getFlight");
     dispatch(flightLoading());
-    fetch("http://localhost:8080/flights")
+      
+      const fromto = JSON.parse(localStorage.getItem('fromto'));
+    fetch("http://localhost:8080/flight/get",{
+      method : "POST",
+      headers : {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fromto),
+    })
       .then((r) => r.json())
       .then((r) => {
         dispatch(addFlights(r));
         setFlight(r);
+        console.log(flight);
       })
       .catch((e) => dispatch(flightError()));
   };

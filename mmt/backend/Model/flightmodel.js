@@ -11,7 +11,7 @@ const flightSchema = new mongoose.Schema({
       departure_time: String,
       arrival_time: String,
       duration:String,
-      fare: String,
+      fare: Number,
       stops: String,
       departure: String,
       arrival: String
