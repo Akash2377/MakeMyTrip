@@ -22,7 +22,7 @@ export const SingleFlight = ({
   const dispatch = useDispatch();
   const handlePageChange = (id) => {
     dispatch(flightBookingLoading());
-    fetch(`http://localhost:8080/flights/${id}`)
+    fetch(`http://localhost:8080/flight/${id}`)
       .then((r) => r.json())
       .then((r) => {
         dispatch(addBookingFlights(r));

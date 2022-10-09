@@ -16,7 +16,9 @@
     "cors": "^2.8.5",
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.0",
+    "express": "^4.18.1",
     "moment": "^2.29.1",
+    "mongoose": "^6.6.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -30,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server" : "json-server --watch --port 8080 db.json"
+    "server": "json-server --watch --port 8080 db.json"
   },
   "eslintConfig": {
     "extends": "react-app"

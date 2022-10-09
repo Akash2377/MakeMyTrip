@@ -63,7 +63,7 @@ export const FlightPayment = () => {
       };
       console.log(data);
       const response = await fetch(
-        "http://localhost:8080/bookings/flights",
+        "http://localhost:8080/flight/booking",
         {
           method: "POST",
           headers: {

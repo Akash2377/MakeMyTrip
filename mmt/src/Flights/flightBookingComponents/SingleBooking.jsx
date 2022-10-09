@@ -56,7 +56,7 @@ export const SingleBooking = ({ flight }) => {
           <p></p>
           <p>
             <b>{flight.arrival}</b>
-            <span> Bengaluru International Airport</span>
+            <span> {`${flight.arrival} international Airport`} </span>
           </p>
         </div>
       </div>
