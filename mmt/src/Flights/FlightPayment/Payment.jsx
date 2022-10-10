@@ -179,7 +179,7 @@ export const Payment = () => {
                 type="text"
                 className={styles.capche_input}
               ></input>
-              {wrong && (
+              {wrong && ( 
                 <Alert severity="error">
                   There is an error-kindly fill in correct UPI Id{" "}
                 </Alert>

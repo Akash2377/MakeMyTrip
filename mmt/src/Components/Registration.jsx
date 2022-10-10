@@ -30,26 +30,26 @@ const Registration = () => {
         email: credentials.email,
         password: credentials.password,
       };
+  
       const response = await fetch(
-        "http://localhost:8080/register/1",
+        "http://localhost:8080/auth/signup",
         {
-          method: "PATCH",
+          method: "POST",
           headers: {
             "content-type": "application/json",
           },
           body: JSON.stringify(data),
         }
       );
-      const json = await response.json();
-      console.log(json);
+      const data2 = await response.json();
+      console.log(data2);
  
-      if (json.length != 0) {
-        // navigate("/");
-        dispatch(signUp(json));
-        dispatch(getUserName(credentials.name));
-      }
+      // if (json.length != 0) {
+          
+      //   dispatch(getUserName(credentials.name));
+      // }
     } catch (error) {
-      console.log(error);
+      console.log("error");
     }
   };
 

@@ -1,28 +1,15 @@
 const { Router } = require("express");
 const UserModel = require("../Model/Users");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 require("dotenv").config();
-
+const checkAuth = require('../middlware/checkauth.js')
 const authRouter = Router();
 
-authRouter.post("/signup", async (req, res) => {
+authRouter.post("/signup",checkAuth, async (req, res) => {
   try {
-    const { username, email, password,mobilenumber } = req.body;
-    const user = await UserModel.findOne({ email: email });
-    if (user) return res.status(400).json({ msg: "The email already exists." });
-
-    const passwordHash = await bcrypt.hash(password);
-    const newUser = new UserModel({
-      username: username,
-      email: email,
-      password: passwordHash,
-      mobilenumber: mobilenumber,
-    });
-    await newUser.save();
-    res.json({ msg: "Sign up Success" });
+      await UserModel.create({...req.body})
+     res.send({ msg: "Sign up Success" });
   } catch (err) {
-    return res.status(500).json({ msg: err.message });
+    return res.status(500).send({ msg: err.message });
   }
 });
 
@@ -30,20 +17,15 @@ authRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email: email });
-    if (!user) return res.status(400).json({ msg: "User does not exist." });
+    if (!user) return res.status(400).send({ msg: "User does not exist." });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Incorrect password." });
+    if (!isMatch) return res.status(400).send({ msg: "Incorrect password." });
+    
 
-    // if login success create token
-    const payload = { id: user._id, name: user.username };
-    const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
-      expiresIn: "1d",
-    });
-
-    res.send({ token, userId: user._id });
+   res .send({userId: user._id });
   } catch (err) {
-    return res.status(500).json({ msg: err.message });
+    return res.status(500).send({ msg: err.message });
   }
 });
 
