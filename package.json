@@ -2,9 +2,9 @@
   "name": "json_server_make_my_trip",
   "version": "1.0.0",
   "description": "Simple json database to deploy to the host of your choice",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "keywords": [
     "ninjakodtv, json-server,heroku, node, REST API"
