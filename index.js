@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/flight", flightRouter);
-app.get("/", "Hello");
 app.listen(port, () => {
   connection();
   console.log("start server");
