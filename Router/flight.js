@@ -12,6 +12,9 @@ flightRouter.post("/", async (req, res, next) => {
 
 //       res.send("done");
 // })
+flightRouter.get("/", async (req, res) => {
+  res.send("hello world");
+});
 flightRouter.post("/get", async (req, res) => {
   const data = await flightModel.find({ ...req.body });
   res.send(data);
