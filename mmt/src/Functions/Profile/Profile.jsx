@@ -53,8 +53,9 @@ export const Profile = () => {
     // try {
     //   const authToken = getValue("userToken");
       // const response = await
+      let id = localStorage.getItem('makeId');
       console.log("before fetch")
-       fetch("http://localhost:3002/register/1")
+       fetch(`http://localhost:8080/auth/${id}`)
         .then((res)=>res.json())
         .then((res)=>setUser(res))
         .catch((error)=>console.log(error))
@@ -126,10 +127,10 @@ export const Profile = () => {
     <div className="myProfileContainer">
       <div className="profileContainer">
         <div className="profilePicView">
-          <p>{user.name ? user.name.split("")[0] : ""}</p>
+          <p>{user.username ? user.username.split("")[0] : ""}</p>
         </div>
         <div className="userTitleSection">
-          <p className="userTitle">{user.name}</p>
+          <p className="userTitle">{user.username}</p>
           <p className="userTag">PERSONAL PROFILE</p>
         </div>
         <div className="profileTabs">
@@ -165,12 +166,12 @@ export const Profile = () => {
         <div className="profileDetails">
           <div className="indProfileContent">
             <p className="indProfileContentTitle">NAME</p>
-            <p className="indProfileContentValue">{user.name}</p>
+            <p className="indProfileContentValue">{user.username}</p>
           </div>
           <div className="profileContentDivider" />
           <div className="indProfileContent">
             <p className="indProfileContentTitle">MOBILE NUMBER</p>
-            <p className="indProfileContentValue">+91-{user.mobile_number}</p>
+            <p className="indProfileContentValue">+91-{user.mobilenumber}</p>
           </div>
           <div className="profileContentDivider" />
           <div className="indProfileContent">

@@ -22,7 +22,7 @@ export const Trips = () => {
     try {
       const authToken = getValue("userToken");
       const response = await fetch(
-        "https://makemytripback.herokuapp.com/bookings/flights",   //work needed
+        `http://localhost:8080/flight/booking/`,   
         {
           method: "GET",
           headers: {

@@ -1,6 +1,6 @@
 
 const UserModel = require("../Model/Users");
-const bcrypt = require("bcrypt");;
+const bcrypt = require("bcryptjs");
 const checkAuth = async(req,res,next) =>{
 
 try {
@@ -13,16 +13,25 @@ try {
       mobilenumber : req.body.mobilenumber
      }
 
-    const user = await UserModel.findOne({ email: email });
-    if (user) {
-      res.status(400).send({ msg: "The email already exists." });
-    }else{
-      const passwordHash = await bcrypt.hash(password);
-    
-       req.body =     {...obj,password : passwordHash};
+     if(username && email && password && mobilenumber){
+      const user = await UserModel.findOne({ email: email });
+      if (user) {
+        res.status(400).send({ msg: "The email already exists." });
+      }else{
+        const passwordHash = await bcrypt.hash(password,10);
+      
+         req.body =     {...obj,password : passwordHash};
+  
+         next();
+      } 
+     }else{
+      res.status(400).send({ msg: "Please fill the detail" });
 
-       next();
-    } 
+     }
+
+
+
+    
 } catch (err) {
     res.status(500).send({ msg: err.message });
 }

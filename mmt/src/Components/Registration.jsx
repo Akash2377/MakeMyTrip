@@ -3,7 +3,7 @@ import styles from "./registration.module.css";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { updateValue } from "../Utils/LocalStorage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getUserName, signUp } from "../Functions/auth/auth.actions";
 
@@ -11,6 +11,7 @@ const Registration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [togglePassword, setTogglePassword] = useState(false);
+
   const [credentials, setCredentials] = useState({
     name: "",
     mobile_number: "",
@@ -25,8 +26,8 @@ const Registration = () => {
   const handleSignUp = async () => {
     try {
       const data = {
-        name: credentials.name,
-        mobile_number: credentials.mobile_number,
+        username: credentials.name,
+        mobilenumber: credentials.mobile_number,
         email: credentials.email,
         password: credentials.password,
       };
@@ -43,11 +44,16 @@ const Registration = () => {
       );
       const data2 = await response.json();
       console.log(data2);
- 
-      // if (json.length != 0) {
-          
-      //   dispatch(getUserName(credentials.name));
-      // }
+      if(data2.msg == 'Sign up Success'){
+        //  navigate("/")
+         dispatch(getUserName(credentials.name));
+         localStorage.setItem('makeId' ,data2.userId)
+         dispatch(signUp(data2.data));
+
+      }else{
+        alert(data2.msg);
+      }
+            
     } catch (error) {
       console.log("error");
     }
